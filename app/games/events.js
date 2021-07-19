@@ -15,16 +15,14 @@ const onShowGame = (event) => {
   event.preventDefault()
   api.showGame().then(ui.onShowGameSuccess).catch(ui.onShowGameFailure)
 }
-// const onUpdateGame = (event) => {
-//   event.preventDefault()
-//   const boxID = id
-//   if (store.game)
-// }
+const onUpdateGame = (event) => {
+  event.preventDefault()
+}
 // let firstPlayer = 'X'
 
 module.exports = {
   onNewGame,
   onShowGame,
-  // onUpdateGame
+  onUpdateGame
   // firstPlayer
 }

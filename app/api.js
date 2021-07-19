@@ -1,10 +1,10 @@
-'use strict'
+// const store = require('./store')
 
-const store = require('./store')
+const config = require('./config')
 
 const signUp = (data) => {
   return $.ajax({
-    url: 'https://tic-tac-toe-api-development.herokuapp.com/sign-up',
+    url: config.apiUrl + '/sign-up',
     method: 'POST',
     data: data
   })
@@ -12,20 +12,22 @@ const signUp = (data) => {
 
 const signIn = (data) => {
   return $.ajax({
-    url: 'https://tic-tac-toe-api-development.herokuapp.com/sign-in',
+    url: config.apiUrl + '/sign-in',
     method: 'POST',
     data: data
   })
 }
-const signOut = () => {
+
+const signOut = (token) => {
   return $.ajax({
-    url: 'https://tic-tac-toe-api-development.herokuapp.com/sign-out',
+    url: config.apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
-      Authorization: 'Bearer ' + store.token
+      Authorization: 'Bearer ' + token
     }
   })
 }
+
 module.exports = {
   signUp,
   signIn,

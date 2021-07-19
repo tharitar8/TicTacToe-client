@@ -23,7 +23,6 @@ const onShowGameFailure = () => {
   $('#message').text('Show Game Failed')
 }
 
-
 module.export = {
   onNewGameSuccess,
   onNewGameFailure,
