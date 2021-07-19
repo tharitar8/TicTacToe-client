@@ -17,7 +17,7 @@ const signIn = (data) => {
     data: data
   })
 }
-const signOut = (token) => {
+const signOut = () => {
   return $.ajax({
     url: 'https://tic-tac-toe-api-development.herokuapp.com/sign-out',
     method: 'DELETE',
@@ -26,19 +26,8 @@ const signOut = (token) => {
     }
   })
 }
-const changePW = (data, token) => {
-  return $.ajax({
-    url: 'https://tic-tac-toe-api-development.herokuapp.com/change-password',
-    method: 'PATCH',
-    header: {
-      Authorization: 'Bearer ' + store.token
-    },
-    data: data
-  })
-}
 module.exports = {
   signUp,
   signIn,
-  signOut,
-  changePW
+  signOut
 }
