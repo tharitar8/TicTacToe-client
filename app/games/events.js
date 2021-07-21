@@ -33,13 +33,17 @@ const onUpdateGame = (event) => {
   const target = event.target
   const player = turn ? 'x' : 'o'
   const cellIndex = $(target).attr('id')
+  store.game.cells[cellIndex] = player
   const game = {
     cell: {
       index: cellIndex,
       value: player
     },
-    over: false
+    over: takeWin()
   }
+  // console.log(game.over)
+  // if (game.over) { return }
+
   api.updateGame(game)
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
@@ -51,66 +55,76 @@ const onUpdateGame = (event) => {
     // [3] [4] [5]
     // [6] [7] [8]
 */
-const winCombinations = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
-const resultWinner = (i) => {
+
+const takeWin = () => {
   let winner = false
-  winCombinations.forEach((win) => {
-    if (
-      store.game[win[0]] === i &&
-      store.game[win[1]] &&
-      store.game[win[2]] === i
-    ) {
-      winner = true
-      alert('Congrats! Winner')
-      console.log(win)
-    }
-  })
+  if (store.game.cells[0] === store.game.cells[1] && store.game.cells[0] === store.game.cells[2] && store.game.cells[0] !== '') {
+    winner = true
+  } else if (store.game.cells[3] === store.game.cells[4] && store.game.cells[3] === store.game.cells[5] && store.game.cells[3] !== '') {
+    winner = true
+  } else if (store.game.cells[6] === store.game.cells[7] && store.game.cells[6] === store.game.cells[8] && store.game.cells[6] !== '') {
+    winner = true
+  } else if (store.game.cells[0] === store.game.cells[3] && store.game.cells[0] === store.game.cells[6] && store.game.cells[0] !== '') {
+    winner = true
+  } else if (store.game.cells[1] === store.game.cells[4] && store.game.cells[1] === store.game.cells[7] && store.game.cells[1] !== '') {
+    winner = true
+  } else if (store.game.cells[2] === store.game.cells[5] && store.game.cells[2] === store.game.cells[8] && store.game.cells[2] !== '') {
+    winner = true
+  } else if (store.game.cells[0] === store.game.cells[4] && store.game.cells[0] === store.game.cells[8] && store.game.cells[0] !== '') {
+    winner = true
+  } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[2] === store.game.cells[6] && store.game.cells[2] !== '') {
+    winner = true
+  } else {
+    winner = false
+  }
   return winner
 }
 
-// const checkWinner = () => {
-//   for (let i = 0 i < winCombinations.length i++) {
-//     if (player[winCombinations[i][0]] != null) {
-//       if (player[winCombinations[i][0]] === player[winCombinations[i][1]] && player[winCombinations[i][1]] === player[winCombinations[i][2]]) {
-//         return 'Winner: ' + player[winCombinations[i][0]]
-//       }
+// const resultWinner = () => {
+//   const winCombinations = [
+//     [0, 1, 2],
+//     [3, 4, 5],
+//     [6, 7, 8],
+//     [0, 3, 6],
+//     [1, 4, 7],
+//     [2, 5, 8],
+//     [0, 4, 8],
+//     [2, 4, 6]
+//   ]
+//   winCombinations.forEach(function (win) {
+//     if (
+//       win.every((index) => {
+//         return store.game.cells[index] === 'x'
+//       })
+//     ) {}
+//       return true
 //     }
-//   }
-//   api.checkWinner()
-//     .then(ui.onCheckWinner)
-//     .catch(ui.onCheckWinner)
+
+//     if (
+//       win.every((index) => {
+//         return store.game.cells[index] === 'o'
+//       })
+//     ) {
+//       return true
+//     }
+//   })
+
+// if () {
+//   store.game.over = true
+//   winner.innerText = 'Congrats' + winner
+//   console.log(store.game.over)
 // }
+// const gameTie = !store.game.cells.includes('')
+// if (gameTie) {
+//   $('#message').html('TIE!')
+//   store.game.over = false
+// }
+//   return false
+// }
+
 module.exports = {
   onNewGame,
   // onShowGame,
   onUpdateGame,
-  // checkWinner
-  resultWinner
+  takeWin
 }
-
-// const onTieCheck = () => {
-//   if (
-//     (store.cells[0] === 'X' || store.cells[0] === 'O') &&
-//     (store.cells[1] === 'X' || store.cells[1] === 'O') &&
-//     (store.cells[2] === 'X' || store.cells[2] === 'O') &&
-//     (store.cells[3] === 'X' || store.cells[3] === 'O') &&
-//     (store.cells[4] === 'X' || store.cells[4] === 'O') &&
-//     (store.cells[5] === 'X' || store.cells[5] === 'O') &&
-//     (store.cells[6] === 'X' || store.cells[6] === 'O') &&
-//     (store.cells[7] === 'X' || store.cells[7] === 'O') &&
-//     (store.cells[8] === 'X' || store.cells[8] === 'O')
-//   ) {
-//     ui.resultTieCheck()
-//     return true
-//   }
-//   return false
-// }

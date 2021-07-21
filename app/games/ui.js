@@ -7,16 +7,16 @@ const onNewGameSuccess = (response) => {
   store.game = response.game
   $('#message').text(`${store.game._id}`)
   $('#sign-in').hide()
-  $('#change-pw').hide()
+  // $('#create-game').show('.box')
   $('#sign-up').hide()
   $('#create-game').trigger('reset')
+  $('.box').removeClass('')
   console.log(response)
 }
 
 const onNewGameFailure = () => {
   $('#message').text('Create Game Failed')
   $('#create-game').trigger('reset')
-  $('#creat-game').empty()
 }
 
 // const onShowGameSuccess = (response) => {
@@ -36,13 +36,16 @@ const onUpdateGameFailure = () => {
   $('#message').text('Failed to Update')
 }
 
-const resultWinnerCheck = (response) => {
+const takeWin = (response) => {
   $('#message').text('Congrats!')
   store.game = response.game
 }
-const resultTieCheck = () => {
-  $('message').text('Tie')
-}
+// const resultWinnerFail = () => {
+//   $('#message').text('Fail')
+// }
+// const resultTieCheck = () => {
+//   $('message').text('Tie')
+// }
 
 module.exports = {
   onNewGameSuccess,
@@ -51,8 +54,9 @@ module.exports = {
   // onShowGameFailure,
   onUpdateGameSuccess,
   onUpdateGameFailure,
-  resultWinnerCheck,
-  resultTieCheck
-
+  takeWin
+  // resultWinnerSuccess,
+  // resultWinnerFail,
+  // resultTieCheck
   // onCheckWinner
 }
