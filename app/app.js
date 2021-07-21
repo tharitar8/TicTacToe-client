@@ -2,6 +2,7 @@
 // const example = require('./example')
 const authEvents = require('./events')
 const gameEvents = require('./games/events')
+// const store = require('./store')
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
@@ -12,6 +13,8 @@ $(() => {
   $('#create-game').on('click', gameEvents.onNewGame)
   $('#create-game').hide()
   $('.game-board').hide()
+  $('.box').on('click', gameEvents.onUpdateGame)
+  $('.game-board').on('click', gameEvents.onWinnerCheck)
 })
 
 $('#sign-in').on('submit', () => {

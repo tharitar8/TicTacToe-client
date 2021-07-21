@@ -12,16 +12,30 @@ const newGame = () => {
     }
   })
 }
-const showGame = () => {
+// const showGame = () => {
+//   return $.ajax({
+//     url: config.apiUrl + '/games',
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Bearer ' + store.token
+//     }
+//   })
+// }
+const updateGame = (game) => {
   return $.ajax({
-    url: config.apiUrl + '/games',
-    method: 'GET',
+    url: config.apiUrl + '/games/' + store.game._id,
+    method: 'PATCH',
     headers: {
       Authorization: 'Bearer ' + store.token
+    },
+    data: {
+      game
     }
   })
 }
+
 module.exports = {
   newGame,
-  showGame
+  // showGame,
+  updateGame
 }
