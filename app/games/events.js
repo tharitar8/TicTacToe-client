@@ -13,26 +13,18 @@ const onNewGame = (event) => {
     .then(ui.onNewGameSuccess)
     .catch(ui.onNewGameFailure)
 }
-$(() => {
-  let currentPlayer = '✕'
-  // Our box click event handler
-  const onBoxClick = (event) => {
-    console.log('click')
-    store.player = currentPlayer
-    // Select the box that was clicked, event.target
-    const box = $(event.target)
-    box.text(currentPlayer)
-    // Change the current player
-    currentPlayer = currentPlayer === 'O' ? '✕' : 'O'
-  }
-  $('.box').on('click', onBoxClick)
-})
 
 const onUpdateGame = (event) => {
   event.preventDefault()
+  if (takeWin()) {
+    console.log('123')
+    return
+  }
   const target = event.target
   const player = turn ? 'x' : 'o'
+  store.prevPlayer = player
   const cellIndex = $(target).attr('id')
+  store.prevIndex = cellIndex
   store.game.cells[cellIndex] = player
   const game = {
     cell: {
@@ -51,13 +43,17 @@ const onUpdateGame = (event) => {
   return turn
 }
 /* Indexes within the board
-    // [0] [1] [2]
-    // [3] [4] [5]
-    // [6] [7] [8]
+    // [0] [1] [2] top row
+    // [3] [4] [5] middle row
+    // [6] [7] [8] bottom row
 */
 
 const takeWin = () => {
   let winner = false
+  if (store.game.cells.every(cell => cell !== '')) {
+    winner = true
+    return winner
+  }
   if (store.game.cells[0] === store.game.cells[1] && store.game.cells[0] === store.game.cells[2] && store.game.cells[0] !== '') {
     winner = true
   } else if (store.game.cells[3] === store.game.cells[4] && store.game.cells[3] === store.game.cells[5] && store.game.cells[3] !== '') {

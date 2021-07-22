@@ -14,8 +14,21 @@ $(() => {
   $('#create-game').hide()
   $('.game-board').hide()
   $('.box').on('click', gameEvents.onUpdateGame)
-  $('.game-board').on('click', gameEvents.onWinnerCheck)
 })
+// $(() => {
+//   let currentPlayer = '✕'
+//   // Our box click event handler
+//   const onBoxClick = (event) => {
+//     console.log('click')
+//     store.player = currentPlayer
+//     // Select the box that was clicked, event.target
+//     const box = $(event.target)
+//     box.text(currentPlayer)
+//     // Change the current player
+//     currentPlayer = currentPlayer === 'O' ? '✕' : 'O'
+//   }
+//   $('.box').on('click', onBoxClick)
+// })
 
 $('#sign-in').on('submit', () => {
   $('#create-game').show()
