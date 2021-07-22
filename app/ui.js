@@ -16,7 +16,7 @@ const onSignUpFailure = () => {
 const onSignInSuccess = (response) => {
   $('#error-message').text('')
   console.log(response)
-  $('#message').text(`Hey  Welcome Back ${response.user.email}`)
+  $('#message').text(`Welcome  ${response.user.email}`)
   store.token = response.user.token
   $('#sign-in').trigger('reset')
   $('#sign-in').hide()
