@@ -8,7 +8,7 @@ let turn = true
 const onNewGame = (event) => {
   event.preventDefault()
   // const data = getFormFields(event.target)
-  console.log('hey new game', ui)
+  // console.log('hey new game', ui)
   api.newGame()
     .then(ui.onNewGameSuccess)
     .catch(ui.onNewGameFailure)
@@ -17,7 +17,7 @@ const onNewGame = (event) => {
 const onUpdateGame = (event) => {
   event.preventDefault()
   if (takeWin()) {
-    console.log('123')
+    // console.log('123')
     return
   }
   const target = event.target
@@ -52,6 +52,7 @@ const takeWin = () => {
   let winner = false
   if (store.game.cells.every(cell => cell !== '')) {
     winner = true
+    $('#message').text('TIE!')
     return winner
   }
   if (store.game.cells[0] === store.game.cells[1] && store.game.cells[0] === store.game.cells[2] && store.game.cells[0] !== '') {
@@ -73,9 +74,16 @@ const takeWin = () => {
   } else {
     winner = false
   }
+  $('#message').text('You Win!')
   return winner
 }
-
+// const onWinner = () => {
+//   if (takeWin() === true) {
+//     $('#message').text('You win!')
+//   } else if (takeWin() === false) {
+//     $('#message').text('TIE!')
+//   }
+// }
 // const resultWinner = () => {
 //   const winCombinations = [
 //     [0, 1, 2],
@@ -123,4 +131,5 @@ module.exports = {
   // onShowGame,
   onUpdateGame,
   takeWin
+  // onWinner
 }

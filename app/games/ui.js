@@ -1,17 +1,16 @@
 'use strict'
 
 const store = require('../store')
-const { onUpdateGame } = require('./events')
+// const { onUpdateGame } = require('./events')
 
 // const store = require('./../store')
 const onNewGameSuccess = (response) => {
   store.game = response.game
-  $('#message').text(`${store.game.player}`)
+  $('#message').text('!READY!')
   $('#sign-in').hide()
   // $('#create-game').show('.box')
   $('#sign-up').hide()
   $('#create-game').trigger('reset')
-  $('#create-game').remove('')
   console.log(response)
 }
 
@@ -28,7 +27,7 @@ const onNewGameFailure = () => {
 //   $('#message').text('Show Game Failed')
 // }
 const onUpdateGameSuccess = (response) => {
-  $('#message').text('Updated Successful')
+  $('#message').text('')
   store.game = response.game
   $('.box').each(i => {
     $($('.box')[i]).text(response.game.cells[i])
@@ -43,12 +42,12 @@ const onUpdateGameFailure = () => {
   $('#message').text('Failed to Update')
 }
 
-const takeWin = (response) => {
-  $('#message').text('Congrats!')
-  $('.box').on('click', onUpdateGame)
-  store.game = response.game
-  $('#message').text('Congrats!')
-}
+// const takeWin = (response) => {
+//   $('#message').text('Congrats!')
+//   $('.box').on('click', onUpdateGame)
+//   store.game = response.game
+//   $('#message').text('Congrats!')
+// }
 // const resultWinnerFail = () => {
 //   $('#message').text('Fail')
 // }
@@ -62,8 +61,8 @@ module.exports = {
   // onShowGameSuccess,
   // onShowGameFailure,
   onUpdateGameSuccess,
-  onUpdateGameFailure,
-  takeWin
+  onUpdateGameFailure
+  // takeWin
   // resultWinnerSuccess,
   // resultWinnerFail,
   // resultTieCheck

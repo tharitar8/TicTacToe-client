@@ -14,6 +14,8 @@ $(() => {
   $('#create-game').hide()
   $('.game-board').hide()
   $('.box').on('click', gameEvents.onUpdateGame)
+  $('.winning-message').hide()
+  // $('winning-message').show(gameEvents.takeWin)
 })
 // $(() => {
 //   let currentPlayer = '✕'
@@ -35,4 +37,7 @@ $('#sign-in').on('submit', () => {
 })
 $('#create-game').on('click', () => {
   $('.game-board').show()
+})
+$('#create-game').on('click', () => {
+  $('.box').empty()
 })

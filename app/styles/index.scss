@@ -6,13 +6,15 @@
 
 body {
   font-family: 'Zen Tokyo Zoo', cursive;
-  color: purple;
+  color: white;
 }
 
 .wrapper {
   max-width: 1440px;
   height: 800px;
-  background-color: whitesmoke;
+  background: url(https://i.imgur.com/ov2qGe7.gif);
+  opacity: 0.75;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,5 +43,11 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 80px;
-  background-color:pink;
+  background-color: purple;
+}
+.winningMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 150px;
 }
