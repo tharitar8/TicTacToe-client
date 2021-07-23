@@ -12,6 +12,8 @@ const onNewGame = (event) => {
   api.newGame()
     .then(ui.onNewGameSuccess)
     .catch(ui.onNewGameFailure)
+  turn = true
+  return turn
 }
 
 const onUpdateGame = (event) => {
@@ -33,7 +35,6 @@ const onUpdateGame = (event) => {
   }
 
   store.prevPlayer = player
-
   store.prevIndex = cellIndex
   store.game.cells[cellIndex] = player
   const game = {
@@ -59,33 +60,39 @@ const onUpdateGame = (event) => {
 */
 
 const takeWin = () => {
-  console.log(store)
+  // console.log(store)
   let winner = false
   if (store.game.cells.every(cell => cell !== '')) {
     winner = true
-    $('#message').text('TIE!')
+    $('#message').text("You're TIE")
     return winner
   }
   if (store.game.cells[0] === store.game.cells[1] && store.game.cells[0] === store.game.cells[2] && store.game.cells[0] !== '') {
+    console.log('here')
+    ui.printWin(store.game.cells[0])
     winner = true
   } else if (store.game.cells[3] === store.game.cells[4] && store.game.cells[3] === store.game.cells[5] && store.game.cells[3] !== '') {
+    ui.printWin(store.game.cells[3])
     winner = true
   } else if (store.game.cells[6] === store.game.cells[7] && store.game.cells[6] === store.game.cells[8] && store.game.cells[6] !== '') {
+    ui.printWin(store.game.cells[6])
     winner = true
   } else if (store.game.cells[0] === store.game.cells[3] && store.game.cells[0] === store.game.cells[6] && store.game.cells[0] !== '') {
+    ui.printWin(store.game.cells[0])
     winner = true
   } else if (store.game.cells[1] === store.game.cells[4] && store.game.cells[1] === store.game.cells[7] && store.game.cells[1] !== '') {
+    ui.printWin(store.game.cells[1])
     winner = true
   } else if (store.game.cells[2] === store.game.cells[5] && store.game.cells[2] === store.game.cells[8] && store.game.cells[2] !== '') {
+    ui.printWin(store.game.cells[2])
     winner = true
   } else if (store.game.cells[0] === store.game.cells[4] && store.game.cells[0] === store.game.cells[8] && store.game.cells[0] !== '') {
+    ui.printWin(store.game.cells[0])
     winner = true
   } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[2] === store.game.cells[6] && store.game.cells[2] !== '') {
+    ui.printWin(store.game.cells[0])
     winner = true
-  } else {
-    winner = false
   }
-  ui.printWin()
   return winner
 }
 

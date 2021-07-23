@@ -10,7 +10,7 @@ const onNewGameSuccess = (response) => {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#create-game').trigger('reset')
-  console.log(response)
+  // console.log(response)
 }
 
 const onNewGameFailure = () => {
@@ -19,23 +19,27 @@ const onNewGameFailure = () => {
 }
 
 const onUpdateGameSuccess = (response) => {
-  $('#message').text('')
+  // $('#message').text('')
   store.game = response.game
   $('.box').each(i => {
     $($('.box')[i]).text(response.game.cells[i])
     // console.log(response.game.cells[i])
     // console.log($($('.box')[i]))
   })
-  console.log('this is the update game \n', store.game)
+  // console.log('this is the update game \n', store.game)
 
   // store.cells = response.cells
 }
 const onUpdateGameFailure = () => {
   $('#message').text('Failed to Update')
 }
-const printWin = () => {
-  $('#message').text('Congrats ! ' + store.prevPlayer + ' wins!')
+const printWin = (player) => {
+  $('#message').text('Congrats ! ' + player + ' you wins!')
+  // $('#message').css('font-size', 60)
 }
+// const printTie = () => {
+//   $('#message').text("You're TIE")
+// }
 
 module.exports = {
   onNewGameSuccess,
@@ -43,4 +47,5 @@ module.exports = {
   onUpdateGameSuccess,
   onUpdateGameFailure,
   printWin
+  // printTie
 }
