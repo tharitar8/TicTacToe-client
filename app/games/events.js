@@ -77,59 +77,9 @@ const takeWin = () => {
   $('#message').text('You Win!')
   return winner
 }
-// const onWinner = () => {
-//   if (takeWin() === true) {
-//     $('#message').text('You win!')
-//   } else if (takeWin() === false) {
-//     $('#message').text('TIE!')
-//   }
-// }
-// const resultWinner = () => {
-//   const winCombinations = [
-//     [0, 1, 2],
-//     [3, 4, 5],
-//     [6, 7, 8],
-//     [0, 3, 6],
-//     [1, 4, 7],
-//     [2, 5, 8],
-//     [0, 4, 8],
-//     [2, 4, 6]
-//   ]
-//   winCombinations.forEach(function (win) {
-//     if (
-//       win.every((index) => {
-//         return store.game.cells[index] === 'x'
-//       })
-//     ) {}
-//       return true
-//     }
-
-//     if (
-//       win.every((index) => {
-//         return store.game.cells[index] === 'o'
-//       })
-//     ) {
-//       return true
-//     }
-//   })
-
-// if () {
-//   store.game.over = true
-//   winner.innerText = 'Congrats' + winner
-//   console.log(store.game.over)
-// }
-// const gameTie = !store.game.cells.includes('')
-// if (gameTie) {
-//   $('#message').html('TIE!')
-//   store.game.over = false
-// }
-//   return false
-// }
 
 module.exports = {
   onNewGame,
-  // onShowGame,
   onUpdateGame,
   takeWin
-  // onWinner
 }
