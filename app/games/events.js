@@ -16,14 +16,24 @@ const onNewGame = (event) => {
 
 const onUpdateGame = (event) => {
   event.preventDefault()
+
+  const target = event.target
+  const cellIndex = $(target).attr('id')
+  const player = turn ? 'x' : 'o'
+  if (store.game.cells[cellIndex] !== '') {
+    return
+  }
+  if (store.game.over === true) {
+    return
+  }
+  // make variable from store.game but with new move and test if anybody won
   if (takeWin()) {
     // console.log('123')
     return
   }
-  const target = event.target
-  const player = turn ? 'x' : 'o'
+
   store.prevPlayer = player
-  const cellIndex = $(target).attr('id')
+
   store.prevIndex = cellIndex
   store.game.cells[cellIndex] = player
   const game = {
@@ -49,6 +59,7 @@ const onUpdateGame = (event) => {
 */
 
 const takeWin = () => {
+  console.log(store)
   let winner = false
   if (store.game.cells.every(cell => cell !== '')) {
     winner = true
@@ -74,7 +85,7 @@ const takeWin = () => {
   } else {
     winner = false
   }
-  $('#message').text('You Win!')
+  ui.printWin()
   return winner
 }
 
