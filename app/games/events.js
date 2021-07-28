@@ -62,11 +62,6 @@ const onUpdateGame = (event) => {
 const takeWin = () => {
   // console.log(store)
   let winner = false
-  if (store.game.cells.every(cell => cell !== '')) {
-    winner = true
-    $('#message').text("You're TIE")
-    return winner
-  }
   if (store.game.cells[0] === store.game.cells[1] && store.game.cells[0] === store.game.cells[2] && store.game.cells[0] !== '') {
     console.log('here')
     ui.printWin(store.game.cells[0])
@@ -90,10 +85,13 @@ const takeWin = () => {
     ui.printWin(store.game.cells[0])
     winner = true
   } else if (store.game.cells[2] === store.game.cells[4] && store.game.cells[2] === store.game.cells[6] && store.game.cells[2] !== '') {
-    ui.printWin(store.game.cells[0])
+    ui.printWin(store.game.cells[2])
     winner = true
+  } else if (store.game.cells.every((cell) => cell !== '')) {
+    winner = true
+    $('#message').text('DRAW!')
+    return winner
   }
-  return winner
 }
 
 module.exports = {

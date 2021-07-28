@@ -34,7 +34,7 @@ const onUpdateGameFailure = () => {
   $('#message').text('Failed to Update')
 }
 const printWin = (player) => {
-  $('#message').text('Congrats ! ' + player + ' you wins!')
+  $('#message').text('Congrats ! ' + player + ' you win!')
   // $('#message').css('font-size', 60)
 }
 // const printTie = () => {
