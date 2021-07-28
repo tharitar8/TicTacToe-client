@@ -90,8 +90,8 @@ const takeWin = () => {
   } else if (store.game.cells.every((cell) => cell !== '')) {
     winner = true
     $('#message').text('DRAW!')
-    return winner
   }
+  return winner
 }
 
 module.exports = {
