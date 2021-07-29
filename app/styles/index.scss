@@ -1,0 +1,55 @@
+@import '~bootstrap/scss/bootstrap';
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.title {
+  border: 50px solid transparent;
+}
+body {
+  font-family: 'Zen Tokyo Zoo', cursive;
+  color: white;
+}
+
+.wrapper {
+  max-width: 1440px;
+  height: 900px;
+  background: url(https://i.imgur.com/ov2qGe7.gif);
+  opacity: 0.80;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.game {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-items: center;
+
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 2px;
+  flex-grow: 1;
+  padding: 50px;
+
+}
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  background-color: purple;
+}
+
+@media (max-width: 400px) {
+  .html {
+    height: 100vh;
+  }
+}
