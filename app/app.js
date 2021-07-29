@@ -34,6 +34,7 @@ $(() => {
 
 $('#sign-in').on('submit', () => {
   $('#create-game').show()
+  $('h2').hide()
 })
 $('#create-game').on('click', () => {
   $('.game-board').show()

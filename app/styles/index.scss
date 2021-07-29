@@ -3,7 +3,9 @@
   box-sizing: border-box;
   margin: 0;
 }
-
+.title {
+  border: 50px solid transparent;
+}
 body {
   font-family: 'Zen Tokyo Zoo', cursive;
   color: white;
@@ -46,8 +48,8 @@ body {
   background-color: purple;
 }
 
-@media (max-width: 480px) {
-  .text {
-    font-size: 16px;
+@media (max-width: 400px) {
+  .html {
+    height: 100vh;
   }
 }
